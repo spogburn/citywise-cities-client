@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-8 col-sm-offset-8 col-xs-offset-8">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search Wiseups" ng-model="DC.searchWiseups">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.wiseups | filter:DC.searchWiseups">
+        <div class="row">
+        <div class="col-md-7 col-sm-7 col-xs-7">
+          <img class="item-img" ng-src="{{item.photo_url}}" alt="submitted image">
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-5">
+          <div class="col-md-12 col-sm-12 col-xs-12 item"><h4>{{item.issue}}</h4></div>
+          <div class="col-md-12 col-sm-12 col-xs-12 item">{{item.category}}</div>
+          <div class="col-md-12 col-sm-12 col-xs-12 item small">{{item.created_at | amDateFormat:'MMMM Do YYYY' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

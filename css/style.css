@@ -1,0 +1,193 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+  color: #777;
+  transition:all 0.5s ease;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+a:focus{
+  text-decoration: none;
+}
+
+.wiseup-row{
+  border: 2px solid rgb(214, 214, 214);
+  border-radius: 5px;
+}
+
+  .logo {
+    height: 35px;
+    padding-bottom: 10px;
+  }
+
+  .city-wise-logo {
+    padding-top: 1%;
+    height: 80%;
+  }
+
+.navbar {
+  position: relative;
+  background-color: #ffc900;
+  border: none;
+}
+
+/*nav {
+  margin:0;
+  padding: 0;
+  height: 100%;
+}*/
+
+/*.navbar-nav {
+  margin:0;
+  height: 100%;
+}*/
+
+/*.navbar-nav>li {
+  margin:0;
+}*/
+
+.nav>li>a {
+  padding-right: 20px;
+}
+
+.navbar-nav>li>a{
+  margin:0;
+  color: #666;
+  height: 100%;
+  padding-top: 18px;
+  padding-bottom: 12px;
+  font-size: 1.2em;
+}
+
+/*.navbar-nav > li > a:hover{
+  background-color: #eebc02;
+  margin:0;
+}*/
+
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin-left: 45%;
+    padding:0;
+}
+
+.navbar-toggle {
+    z-index:1;
+}
+
+.wiseup-container{
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+.heading-container{
+  margin-top: 2.5%;
+}
+
+.img-small {
+  height:50px;
+}
+
+.wiseup-display {
+  text-align: center;
+}
+
+.wiseup-card {
+  margin-top: 3%;
+  margin-right: 5%;
+  background-color: #eee;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+
+.item-row{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2%;
+}
+
+.item-img{
+  border-radius: 8px;
+  width: 90%;
+}
+
+.button-row {
+  margin-bottom:5%;
+}
+
+.yellow-highlight {
+  color: rgb(222, 173, 0)
+}
+
+a.yellow-highlight:hover{
+  color: rgb(180, 141, 5);
+}
+
+a.yellow-highlight:focus{
+  color: rgb(180, 141, 5);
+}
+
+a>h4.yellow-highlight:hover{
+  color: rgb(180, 141, 5);
+}
+.greeting {
+  border: 2px solid #b9b7b7;
+  border-radius: 8px;
+}
+
+.views {
+  margin-top: 2.5%;
+}
+
+#map {
+  height: 75vh;
+}
+
+.iw-container {
+   width: 200px;
+   height: 100%;
+   padding: 10px;
+   color: gray;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+}
+
+.iw-container>p {
+  font-size: 1.2em;
+}
+
+.iw-title {
+  font-size: 22px;
+  width: 100%;
+  background-color: #ffc900;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.iw-image {
+  float:left;
+  margin-right: 10px;
+  border: 3px solid #b9b7b7;
+  border-radius: 5px;
+
+}
+
+/*
+animation for cards*/
+.grow:hover
+{
+        -webkit-transform: scale(1.03);
+        -ms-transform: scale(1.03);
+        transform: scale(1.03);
+}

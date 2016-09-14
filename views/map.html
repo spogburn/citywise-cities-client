@@ -1,0 +1,19 @@
+<nav-display></nav-display>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 greeting" ng-controller="DashboardController as DC"><h4>WiseUps for {{DC.username}}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4 views">
+      <a class="nav-link active" href="#/dashboard">List view</a><span> | </span>
+      <a class="nav-link active" href="#/card">Card view</a><span> | </span>
+       <a class="nav-link" href="#/map">Map View</a>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%;">
+    <div class="col-md-10 col-md-offset-1" id="map">
+    </div>
+  </div>
+
+</div>

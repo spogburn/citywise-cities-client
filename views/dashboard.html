@@ -1,0 +1,14 @@
+<nav-display></nav-display>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12 greeting"><h4>Hello {{DC.username}}! You have <span class="yellow-highlight">{{DC.wiseups.length}}</span> wiseups that have been submitted as of <span class="yellow-highlight">{{DC.currentDate | amDateFormat:'dddd, MMMM Do YYYY' }}</span></h4> </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-xs-4 views">
+        <a class="nav-link active" href="#/dashboard">List view</a><span> | </span>
+        <a class="nav-link active" href="#/card">Card view</a><span> | </span>
+         <a class="nav-link" href="#/map">Map View</a>
+      </div>
+    </div>
+  <wise-up-list></wise-up-list>
+</div>

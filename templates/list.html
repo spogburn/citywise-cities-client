@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-8 col-sm-offset-8 col-xs-offset-8">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search Wiseups" ng-model="DC.searchWiseups">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+      <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+          <a href="" ng-click="DC.sortType='issue'; DC.sortReverse = !DC.sortReverse">
+            <h4 class="yellow-highlight">Description
+            <span class="fa fa-caret-down" ng-show="DC.sortType=='issue' && !DC.sortReverse"></span>
+              <span class="fa fa-caret-up" ng-show="DC.sortType=='issue' && DC.sortReverse"></span>
+          </h4>
+          </a>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <a href="" ng-click="DC.sortType='category'; DC.sortReverse = !DC.sortReverse">
+            <h4 class="yellow-highlight">Category
+              <span class="fa fa-caret-down" ng-show="DC.sortType=='category' && !DC.sortReverse"></span>
+                <span class="fa fa-caret-up" ng-show="DC.sortType=='category' && DC.sortReverse"></span></h4>
+          </a>
+        </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+            <a href="" ng-click="DC.sortType='user_email'; DC.sortReverse = !DC.sortReverse">
+              <h4 class="yellow-highlight">Submitted By
+                <span class="fa fa-caret-down" ng-show="DC.sortType=='user_email' && !DC.sortReverse"></span>
+                  <span class="fa fa-caret-up" ng-show="DC.sortType=='user_email' && DC.sortReverse"></span>
+              </h4>
+            </a>
+          </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <a href="" ng-click="DC.sortType='created_at'; DC.sortReverse = !DC.sortReverse">
+            <h4 class="yellow-highlight">Date Submitted
+              <span class="fa fa-caret-down" ng-show="DC.sortType=='created_at' && !DC.sortReverse"></span>
+                <span class="fa fa-caret-up" ng-show="DC.sortType=='created_at' && DC.sortReverse"></span>
+            </h4>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12 item-row" ng-repeat="item in DC.wiseups | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups" ng-init = "DC.showLarge = Array(DC.wiseups.length).fill({show:false})">
+          <div class="col-md-1 col-sm-1 col-xs-1 item" ng-click="DC.showImageModal(item)"><img ng-src="{{item.photo_url}}" alt="item image" class="img-small"></div>
+          <div class="col-md-3 col-sm-3 col-xs-3 item"><p>{{item.issue}}</p></div>
+          <div class="col-md-2 col-sm-2 col-xs-2 item"><p>{{item.category}}</p></div>
+          <div class="col-md-3 col-sm-3 col-xs-3 item"><p>{{item.user_email}}</p></div>
+          <div class="col-md-2 col-sm-2 col-xs-2 item"><p>{{item.created_at | amDateFormat:'MM/DD/YYYY' }}</p></div>
+          <div class="col-md-1 col-sm-1 col-xs-1">
+            <a href="" class="yellow-highlight" ng-click="DC.showLarge.fill({show:false}); DC.showLarge[$index].show = !DC.showLarge[$index].show">View/Edit</a>
+          </div>
+
+        </div>
+        <large-list></large-list>
+
+    </div>
+  </div>
+</div>
