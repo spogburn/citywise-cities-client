@@ -21,9 +21,13 @@
             <div class="row selection">
               <div class="col-md-8 col-sm-8 col-xs-8">
                 <span class="h4">Mark WiseUp as fixed?</span>
-                <button class="btn" ng-click="updateFixed(item); updateWiseUp(item)">Yes</button>
+                <button class="btn" ng-hide="undoFix" ng-click="updateFixed(item); fixWiseUp(item)">Yes</button>
+                <button class="btn" ng-show="undoFix" ng-click="undoFixed(item); fixWiseUp(item)">Undo</button>
+
                 <span class="h4">Archive WiseUp?</span>
-                <button class="btn" ng-click="updateArchived(item); archiveWiseUp(item)">Yes</button>
+                <button class="btn" ng-hide="undoArch" ng-click="updateArchive(item); archiveWiseUp(item)">Yes</button>
+
+                <button class="btn" ng-click="undoArchive(item); archiveWiseUp(item)" ng-show="undoArch">Undo</button>
               </div>
             </div>
           </div>

@@ -78,7 +78,10 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
    ModalService.showModal({
      templateUrl: "./templates/imagemodal.html",
      controller: function($scope, close) {
-      $scope.updateWiseUp = function(){
+      $scope.undoFix = false;
+      $scope.undoArch = false;
+
+      $scope.fixWiseUp = function(){
         updateCityData.update(item)
         .then(function(data){
           console.log(data);
@@ -96,11 +99,29 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
           console.log('error', err);
         })
       }
+
       $scope.updateFixed = function(item){
-        updateView(item, vm.currentWiseups, vm.fixedWiseups)
+        $scope.undoFix = !$scope.undoFix;
+        updateView(item, vm.currentWiseups, vm.fixedWiseups);
+        toggleItem(item, 'is_fixed');
       }
-      $scope.updateArchived = function(item){
+
+      $scope.updateArchive = function(item){
+        $scope.undoArch = !$scope.undoArch;
         updateView(item, vm.currentWiseups, vm.archivedWiseups)
+        toggleItem(item, 'is_archived')
+      }
+
+      $scope.undoFixed = function(item){
+        $scope.undoFix = !$scope.undoFix;
+        updateView(item, vm.fixedWiseups, vm.currentWiseups);
+        toggleItem(item, 'is_fixed');
+      }
+
+      $scope.undoArchive = function(item){
+        $scope.undoArch = !$scope.undoArch;
+        updateView(item, vm.archivedWiseups, vm.currentWiseups);
+        toggleItem(item, 'is_archived');
       }
 
       $scope.item = item;
@@ -132,6 +153,12 @@ app.controller('MapController', ['getMapService', function(getMapService){
 var updateView = function(item, arrFrom, arrTo){
   var itemToAdd = arrFrom.splice(arrFrom.indexOf(item),1)
   arrTo.push(itemToAdd[0]);
-  console.log(arrFrom.length);
-  console.log(arrTo);
+}
+
+var toggleItem = function(item, key){
+  console.log('item to toggle', item);
+  console.log('item key', item[key]);
+  item[key] = !item[key];
+  console.log('toggled item', item);
+
 }

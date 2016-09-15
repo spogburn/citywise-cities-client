@@ -32,11 +32,13 @@ app.service('updateCityData', ['$http', 'apiService', function($http, apiService
   var sv = this;
   sv.update = function(item){
     var id = item.id;
-    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/fixed');
+    var is_fixed = !item.is_fixed;
+    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/fixed', {is_fixed: is_fixed});
   }
   sv.archive = function(item){
     var id = item.id;
-    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/archive')
+    var is_archived = !item.is_archived;
+    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/archive', {is_archived: is_archived})
   }
 }])
 
