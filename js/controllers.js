@@ -29,18 +29,39 @@ app.controller('LoginController', ['$http', '$window', '$location', 'addCityServ
     });
   };
 
+  vm.logout = function(){
+    $window.localStorage.clear;
+    $location.path('/');
+  }
+
 }])
 
-app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q', 'getCityData', function($http, $window, ModalService, $q, getCityData){
+app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q', 'getCityData', 'updateCityData', function($http, $window, ModalService, $q, getCityData, updateCityData){
   var vm = this;
-  vm.wiseups = [];
-  vm.showLarge = false;
+  vm.currentWiseups = [];
+  vm.fixedWiseups = [];
+  vm.archivedWiseups = [];
   vm.username = $window.localStorage.username;
   vm.currentDate = new Date()
   vm.getCityData = getCityData.getData()
     .then(function(data){
-      console.log('data', data);
-      vm.wiseups = data.data;
+      var temp = data.data;
+      for (var i = 0; i < temp.length; i++){
+        if (temp[i].is_fixed === false && temp[i].is_archived === false){
+          console.log('current');
+          vm.currentWiseups.push(temp[i])
+        }
+        else if (temp[i].is_fixed == true){
+          console.log('fixed true');
+          vm.fixedWiseups.push(temp[i])
+        }
+        else if (temp[i].is_archived === true){
+          vm.archivedWiseups.push(temp[i])
+        }
+      }
+      console.log('fixed', vm.fixedWiseups);
+      console.log('archived', vm.archivedWiseups);
+      console.log('current', vm.currentWiseups);
     })
     .catch(function(err){
       console.log(err);
@@ -53,10 +74,35 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
   }
 
   vm.showImageModal = function(item) {
-   // Just provide a template url, a controller and call 'showModal'.
+
    ModalService.showModal({
      templateUrl: "./templates/imagemodal.html",
      controller: function($scope, close) {
+      $scope.updateWiseUp = function(){
+        updateCityData.update(item)
+        .then(function(data){
+          console.log(data);
+        })
+        .catch(function(err){
+          console.log('error', err);
+        })
+      }
+      $scope.archiveWiseUp = function(){
+        updateCityData.archive(item)
+        .then(function(data){
+          console.log(data);
+        })
+        .catch(function(err){
+          console.log('error', err);
+        })
+      }
+      $scope.updateFixed = function(item){
+        updateView(item, vm.currentWiseups, vm.fixedWiseups)
+      }
+      $scope.updateArchived = function(item){
+        updateView(item, vm.currentWiseups, vm.archivedWiseups)
+      }
+
       $scope.item = item;
       $scope.dismissModal = function() {
          close(200); // close, but give 200ms for bootstrap to animate
@@ -64,8 +110,7 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
       }
     })
     .then(function(modal) {
-     console.log('this is the modal item', item);
-     console.log(modal);
+
      // The modal object has the element built, if this is a bootstrap modal
      // you can call 'modal' to show it, if it's a custom modal just show or hide
      // it as you need to.
@@ -81,5 +126,12 @@ app.controller('MapController', ['getMapService', function(getMapService){
   var vm = this;
   vm.getData = getMapService.getData();
 
-
 }])
+
+
+var updateView = function(item, arrFrom, arrTo){
+  var itemToAdd = arrFrom.splice(arrFrom.indexOf(item),1)
+  arrTo.push(itemToAdd[0]);
+  console.log(arrFrom.length);
+  console.log(arrTo);
+}

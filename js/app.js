@@ -4,6 +4,10 @@ var app = angular.module('CityWiseAdmin', ['ngRoute', 'google.places', 'angularM
 
 app.config(function($routeProvider){
   $routeProvider
+  .when('/signin', {
+    templateUrl: './views/signin.html',
+    controller: 'LoginController as LC'
+  })
   .when('/dashboard', {
     templateUrl: './views/dashboard.html',
     controller: 'DashboardController as DC'
@@ -17,7 +21,7 @@ app.config(function($routeProvider){
     controller: 'MapController as MC'
   })
   .otherwise({
-    templateUrl: './views/login.html',
+    templateUrl: './views/landing.html',
     controller: 'LoginController as LC'
   });
 });

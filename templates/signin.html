@@ -4,9 +4,9 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4 col-sm-6">
+  <div class="col-md-12 col-sm-12">
     <form>
-      <h1>Sign In</h1>
+      <h1 class="login-text">Sign in to CityWise</h1>
       <div class="row form-group" ng-show="LC.error.show">
         <div class="col-md-12 col-sm-12">
           <h4 style="color:rgb(255, 77, 0)">{{LC.error.message}}</h4>
@@ -14,14 +14,14 @@
         <button class="btn btn-danger">Reset password</button>
       </div>
       <div class="form-group">
-        <label for="email">Enter your login email</label>
+        <label for="email" class="login-text">Enter your login email</label>
         <input type="email" class="form-control" id="email" ng-model="LC.signinInfo.email" placeholder="myname@cityname.gov">
       </div>
       <div class="form-group">
-        <label for="password">Enter your password</label>
+        <label for="password" class="login-text">Enter your password</label>
         <input type="password" class="form-control" id="password" ng-model="LC.signinInfo.password" placeholder="password">
       </div>
-       <button type="submit" ng-click="LC.submit(LC.signinInfo)" class="btn btn-primary">Log In</button>
+       <button type="submit" ng-click="LC.submit(LC.signinInfo)" class="btn btn-yellow">Log In</button>
     </form>
   </div>
 </div>

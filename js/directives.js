@@ -4,6 +4,7 @@ app.directive('navDisplay', function(){
   return {
     restrict: 'E',
     templateUrl: '../templates/nav.html',
+    controller: 'LoginController as LC'
   };
 });
 
@@ -25,13 +26,6 @@ app.directive('wiseUpList', function(){
   return {
     restrict: 'E',
     templateUrl: '../templates/list.html'
-  }
-})
-
-app.directive('largeList', function(){
-  return {
-    restrict: 'E',
-    templateUrl: '../templates/largelist.html'
   }
 })
 

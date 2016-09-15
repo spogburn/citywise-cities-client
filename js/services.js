@@ -21,9 +21,22 @@ app.service('addCityService', ['$http', 'apiService', function($http, apiService
 
 app.service('getCityData', ['$http', 'apiService', function($http, apiService){
   var sv = this;
+  sv.cleanedData = [];
   sv.getData = function(){
-    console.log('getting daaaata');
-    return $http.get(apiService.getApiUrl() + 'api/city-wise')
+    console.log('getting zee data');
+    return $http.get(apiService.getApiUrl() + 'api/city-wise');
+  }
+}])
+
+app.service('updateCityData', ['$http', 'apiService', function($http, apiService){
+  var sv = this;
+  sv.update = function(item){
+    var id = item.id;
+    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/fixed');
+  }
+  sv.archive = function(item){
+    var id = item.id;
+    return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/archive')
   }
 }])
 

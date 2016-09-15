@@ -1,11 +1,34 @@
 <div class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4>{{item.issue}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{item.photo_url}}</p>
+        <div class="row">
+          <div class="col-md-6"><img ng-src="{{item.photo_url}}" alt="issue image" class="modal-img"></div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-8 col-sm-8 col-xs-8"><h4>Category: {{item.category}}</h4></div>
+            </div>
+            <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-8"><h4>Date Submitted: {{item.created_at | amDateFormat:'MM/DD/YYYY' }}</h4></div>
+            </div>
+            <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-8"><h4>Time Submitted: {{item.created_at | amDateFormat:'hh:mm a' }}</h4></div>
+            </div>
+            <div class="row selection">
+              <div class="col-md-8 col-sm-8 col-xs-8">
+                <span class="h4">Mark WiseUp as fixed?</span>
+                <button class="btn" ng-click="updateFixed(item); updateWiseUp(item)">Yes</button>
+                <span class="h4">Archive WiseUp?</span>
+                <button class="btn" ng-click="updateArchived(item); archiveWiseUp(item)">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
       </div>
       <div class="modal-footer">

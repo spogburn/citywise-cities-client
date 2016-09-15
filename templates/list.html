@@ -46,19 +46,22 @@
         </div>
       </div>
       <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12 item-row" ng-repeat="item in DC.wiseups | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups" ng-init = "DC.showLarge = Array(DC.wiseups.length).fill({show:false})">
-          <div class="col-md-1 col-sm-1 col-xs-1 item" ng-click="DC.showImageModal(item)"><img ng-src="{{item.photo_url}}" alt="item image" class="img-small"></div>
+      <div class="col-md-12 col-sm-12 col-xs-12 item-row" ng-repeat="item in DC.currentWiseups | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups" ng-init = "DC.showLarge = Array(DC.currentWiseups.length).fill(false)">
+          <div class="col-md-1 col-sm-1 col-xs-1 item"><img ng-src="{{item.photo_url}}" alt="item image" class="img-small"></div>
           <div class="col-md-3 col-sm-3 col-xs-3 item"><p>{{item.issue}}</p></div>
           <div class="col-md-2 col-sm-2 col-xs-2 item"><p>{{item.category}}</p></div>
           <div class="col-md-3 col-sm-3 col-xs-3 item"><p>{{item.user_email}}</p></div>
           <div class="col-md-2 col-sm-2 col-xs-2 item"><p>{{item.created_at | amDateFormat:'MM/DD/YYYY' }}</p></div>
           <div class="col-md-1 col-sm-1 col-xs-1">
-            <a href="" class="yellow-highlight" ng-click="DC.showLarge.fill({show:false}); DC.showLarge[$index].show = !DC.showLarge[$index].show">View/Edit</a>
+            <a href="" class="yellow-highlight" ng-click="DC.showImageModal(item)">View/Edit</a>
+            <!-- <div class="col-md-12" ng-show="DC.showLarge[$index]">
+              <div class="row">
+                <div class="col-md-12"><button class="btn btn-sm">Mark as fixed</button></div>
+                <div class="col-md-12"><button class="btn btn-sm">Delete WiseUp</button></div>
+              </div>
+            </div> -->
           </div>
 
         </div>
-        <large-list></large-list>
-
     </div>
-  </div>
 </div>

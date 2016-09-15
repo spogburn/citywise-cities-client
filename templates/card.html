@@ -13,7 +13,7 @@
   </div>
 
     <div class="row">
-      <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.wiseups | filter:DC.searchWiseups">
+      <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.currentWiseups | filter:DC.searchWiseups" ng-click="DC.showImageModal(item)">
         <div class="row">
         <div class="col-md-7 col-sm-7 col-xs-7">
           <img class="item-img" ng-src="{{item.photo_url}}" alt="submitted image">
