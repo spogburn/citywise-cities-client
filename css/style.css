@@ -145,8 +145,8 @@ a:focus{
   text-align: center;
 }
 
-
 .wiseup-card {
+  min-height: 250px;
   margin-top: 3%;
   margin-right: 3%;
   background-color: #eee;
@@ -199,7 +199,7 @@ a:focus{
 }
 
 .btn-warning.active, .btn-warning.active:focus, .btn-warning.active:hover  {
-    background: #007299;
+    background: orange;
     box-shadow: none;
 }
 

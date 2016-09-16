@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('CityWiseAdmin', ['ngRoute', 'google.places', 'angularMoment', 'angular-spinkit', 'angularModalService']);
+var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService']);
 
 app.config(function($routeProvider){
   $routeProvider

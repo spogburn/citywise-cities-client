@@ -36,11 +36,12 @@ app.controller('LoginController', ['$http', '$window', '$location', 'addCityServ
 
 }])
 
-app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q', 'getCityData', 'updateCityData', function($http, $window, ModalService, $q, getCityData, updateCityData){
+app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q', 'getCityData', 'updateCityData', 'sortDataService', function($http, $window, ModalService, $q, getCityData, updateCityData, sortDataService){
   var vm = this;
   vm.currentWiseups = [];
   vm.fixedWiseups = [];
   vm.archivedWiseups = [];
+  vm.filtered = '';
   vm.username = $window.localStorage.username;
   vm.currentDate = new Date()
   vm.getCityData = getCityData.getData()
@@ -71,6 +72,11 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
   vm.searchWiseups = '';
   vm.showIssue = function(item){
     console.log('showIssue');
+  }
+
+  vm.filterByCategory = function(filter){
+    console.log('the filter is ', filter);
+    sortDataService.filterByCategory(filter, vm.currentWiseups)
   }
 
   vm.showImageModal = function(item) {

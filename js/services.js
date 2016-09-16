@@ -30,6 +30,7 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
 
 app.service('updateCityData', ['$http', 'apiService', function($http, apiService){
   var sv = this;
+
   sv.update = function(item){
     console.log('item fixed state', item.is_fixed);
     var id = item.id;
@@ -41,6 +42,22 @@ app.service('updateCityData', ['$http', 'apiService', function($http, apiService
     var is_archived = !item.is_archived;
     return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/archive', {is_archived: is_archived})
   }
+}])
+
+app.service('sortDataService', [function(){
+  var sv = this;
+  sv.filtered = {};
+  sv.filterByCategory = function(filter, arr){
+    sv.filtered.filteredWiseups = [];
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].category === filter) {
+          console.log('in filter', arr[i].category);
+        sv.filtered.filteredWiseups.push(arr[i]);
+      }
+    }
+    console.log(sv.filtered.filteredWiseups);
+  }
+
 }])
 
 app.service('getMapService', ['getCityData', function(getCityData){
