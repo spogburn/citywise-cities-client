@@ -8,6 +8,12 @@ app.config(function($routeProvider){
     templateUrl: './views/signin.html',
     controller: 'LoginController as LC'
   })
+  .when('/signup', {
+    templateUrl: './views/signup.html',
+  })
+  .when('/about', {
+    templateUrl: './views/about.html'
+  })
   .when('/dashboard', {
     templateUrl: './views/dashboard.html',
     controller: 'DashboardController as DC'
@@ -22,6 +28,10 @@ app.config(function($routeProvider){
   })
   .when('/fixed', {
     templateUrl: './views/fixed.html',
+    controller: 'DashboardController as DC'
+  })
+  .when('/archived', {
+    templateUrl: './views/archived.html',
     controller: 'DashboardController as DC'
   })
   .otherwise({

@@ -36,6 +36,12 @@ app.directive('fixedList', function(){
   }
 })
 
+app.directive('archivedList', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '../templates/archivedlist.html'
+  }
+})
 app.directive('routeLoadingIndicator', function($rootScope) {
   return {
     restrict: 'E',

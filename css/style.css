@@ -47,6 +47,10 @@ body {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
 }
 
+.signup-form {
+  color: rgb(228, 209, 157);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
+}
 .btn-yellow {
   margin-top: 3%;
   background-color:  #ffc900;
@@ -126,6 +130,17 @@ a:focus{
 
 .navbar-toggle {
     z-index:1;
+}
+
+.form-inline {
+  margin-right: 1%;
+  color:#444;
+}
+
+.form-inline .form-group{
+    margin-left: 0;
+    margin-right: 0;
+    padding-left:0;
 }
 
 .wiseup-container{

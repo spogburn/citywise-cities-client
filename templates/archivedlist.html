@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12 item-row" ng-repeat="item in DC.fixedWiseups | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups | filter:DC.filtered">
+      <div class="col-md-12 col-sm-12 col-xs-12 item-row" ng-repeat="item in DC.archivedWiseups | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups | filter:DC.filtered">
           <div class="col-md-1 col-sm-1 col-xs-1 item"><img ng-src="{{item.photo_url}}" alt="item image" class="img-small"></div>
           <div class="col-md-3 col-sm-3 col-xs-3 item"><p>{{item.issue}}</p></div>
           <div class="col-md-2 col-sm-2 col-xs-2 item"><p>{{item.category}}</p></div>

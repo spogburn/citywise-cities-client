@@ -1,7 +1,7 @@
 <nav-display></nav-display>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 greeting"><h4>Hello {{DC.username}}! You have <span class="yellow-highlight">{{DC.fixedWiseups.length}}</span> fixed wiseups as of <span class="yellow-highlight">{{DC.currentDate | amDateFormat:'dddd, MMMM Do YYYY' }}</span></h4> </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 greeting"><h4>Hello {{DC.username}}! You have <span class="yellow-highlight">{{DC.archivedWiseups.length}}</span> archived wiseups as of <span class="yellow-highlight">{{DC.currentDate | amDateFormat:'dddd, MMMM Do YYYY' }}</span></h4> </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-4 views-container">
@@ -14,5 +14,5 @@
       <span class="h4"><a class="views" href="#/archived">View Archived</a></span>
       </div>
     </div>
-    <fixed-list></fixed-list>
+    <archived-list></archived-list>
 </div>
