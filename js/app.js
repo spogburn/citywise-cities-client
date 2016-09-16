@@ -20,6 +20,10 @@ app.config(function($routeProvider){
     templateUrl: './views/map.html',
     controller: 'MapController as MC'
   })
+  .when('/fixed', {
+    templateUrl: './views/fixed.html',
+    controller: 'DashboardController as DC'
+  })
   .otherwise({
     templateUrl: './views/landing.html',
     controller: 'LoginController as LC'

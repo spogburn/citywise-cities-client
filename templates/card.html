@@ -12,14 +12,14 @@
     </div>
   </div>
 
-    <div class="row">
+    <div class="container">
       <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.currentWiseups | filter:DC.searchWiseups" ng-click="DC.showImageModal(item)">
         <div class="row">
         <div class="col-md-7 col-sm-7 col-xs-7">
           <img class="item-img" ng-src="{{item.photo_url}}" alt="submitted image">
         </div>
         <div class="col-md-5 col-sm-5 col-xs-5">
-          <div class="col-md-12 col-sm-12 col-xs-12 item"><h4>{{item.issue}}</h4></div>
+          <div class="col-md-12 col-sm-12 col-xs-12 item"><h4 class="card-issue">{{item.issue}}</h4></div>
           <div class="col-md-12 col-sm-12 col-xs-12 item">{{item.category}}</div>
           <div class="col-md-12 col-sm-12 col-xs-12 item small">{{item.created_at | amDateFormat:'MMMM Do YYYY' }}</div>
         </div>

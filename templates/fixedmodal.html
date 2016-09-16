@@ -4,14 +4,11 @@
       <div class="modal-header">
         <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="row">
-          <div class="col-md-6">
-            <h4 ng-class="{'strikethrough':item.is_fixed}" class="item-scroll-vertical">{{item.issue}}</h4>
-          </div>
-          <div class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3">
-            <h4 ng-show="item.is_fixed" style="color:red;">Fixed!</h4>
-          </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <h4 ng-class="{'strikethrough':item.is_fixed}" class="item-scroll-vertical">{{item.issue}}</h4>
         </div>
 
+      </div>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -29,16 +26,17 @@
             <div class="row selection">
               <div class="col-md-8 col-sm-8 col-xs-8">
                 <span class="h4">Mark WiseUp as fixed?</span>
-                <button class="btn btn-sm btn-default" ng-hide="item.is_fixed" ng-click="fixWiseUp(item); updateFixed(item);">Yes</button>
-                <button class="btn btn-sm btn-warning" ng-show="item.is_fixed" ng-click="fixWiseUp(item); undoFixed(item) ">Undo</button>
+                <button class="btn" ng-hide="item.is_fixed" ng-click="fixWiseUp(item); updateFixed(item);">Yes</button>
+                <button class="btn" ng-show="item.is_fixed" ng-click="fixWiseUp(item); undoFixed(item) ">Undo</button>
                 <span class="h4">Archive WiseUp?</span>
-                <button class="btn btn-sm btn-default" ng-hide="item.is_archived" ng-click="archiveWiseUp(item); updateArchive(item)">Yes</button>
+                <button class="btn" ng-hide="item.is_archived" ng-click="archiveWiseUp(item); updateArchive(item)">Yes</button>
 
-                <button class="btn btn-sm btn-warning" ng-click="archiveWiseUp(item); undoArchive(item)" ng-show="item.is_archived">Undo</button>
+                <button class="btn" ng-click="archiveWiseUp(item); undoArchive(item)" ng-show="item.is_archived">Undo</button>
               </div>
             </div>
           </div>
         </div>
+
 
       </div>
       <div class="modal-footer">

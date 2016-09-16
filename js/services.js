@@ -31,6 +31,7 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
 app.service('updateCityData', ['$http', 'apiService', function($http, apiService){
   var sv = this;
   sv.update = function(item){
+    console.log('item fixed state', item.is_fixed);
     var id = item.id;
     var is_fixed = !item.is_fixed;
     return $http.put(apiService.getApiUrl() + 'api/city-wise/' + id + '/fixed', {is_fixed: is_fixed});
@@ -58,7 +59,7 @@ app.service('getMapService', ['getCityData', function(getCityData){
       makeMap(items[0].lat, items[0].long)
 
       for (var i = 0; i < items.length; i++){
-        makeMarker(items[i].category, items[i].issue, items[i].photo_url, items[i].lat, items[i].long)
+        makeMarker(items[i].category, items[i].issue, items[i].photo_url, items[i].lat, items[i].long, items[i].id)
       }
 
     })
@@ -83,7 +84,7 @@ app.service('getMapService', ['getCityData', function(getCityData){
 
   }
 
-  var makeMarker = function(category, issue, image, lat, long){
+  var makeMarker = function(category, issue, image, lat, long, id){
 
     var contentStr = '<div class="iw-container">' + '<div class="iw-title">' + category + '</div><div class="iw-content"><img src="' + image + '" height="75" width="75" class="iw-image">' +
                       '<p>'+ issue + '</p></div></div>';
@@ -97,11 +98,13 @@ app.service('getMapService', ['getCityData', function(getCityData){
       map: map,
       draggable: true,
       animation: google.maps.Animation.drop,
-      position: {lat: Number(lat), lng: Number(long)}
+      position: {lat: Number(lat), lng: Number(long)},
+      item_id: id
     })
 
     marker.addListener('click', function(){
       infoWindow.open(map, marker)
+      console.log('marker id', marker.item_id);
     })
 
   }

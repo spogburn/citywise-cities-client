@@ -29,6 +29,13 @@ app.directive('wiseUpList', function(){
   }
 })
 
+app.directive('fixedList', function(){
+  return {
+    restrict: 'E',
+    templateUrl: '../templates/fixedlist.html'
+  }
+})
+
 app.directive('routeLoadingIndicator', function($rootScope) {
   return {
     restrict: 'E',

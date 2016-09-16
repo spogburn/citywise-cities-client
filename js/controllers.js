@@ -78,8 +78,6 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
    ModalService.showModal({
      templateUrl: "./templates/imagemodal.html",
      controller: function($scope, close) {
-      $scope.undoFix = false;
-      $scope.undoArch = false;
 
       $scope.fixWiseUp = function(){
         updateCityData.update(item)
@@ -101,25 +99,21 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$q',
       }
 
       $scope.updateFixed = function(item){
-        $scope.undoFix = !$scope.undoFix;
         updateView(item, vm.currentWiseups, vm.fixedWiseups);
         toggleItem(item, 'is_fixed');
       }
 
       $scope.updateArchive = function(item){
-        $scope.undoArch = !$scope.undoArch;
         updateView(item, vm.currentWiseups, vm.archivedWiseups)
         toggleItem(item, 'is_archived')
       }
 
       $scope.undoFixed = function(item){
-        $scope.undoFix = !$scope.undoFix;
         updateView(item, vm.fixedWiseups, vm.currentWiseups);
         toggleItem(item, 'is_fixed');
       }
 
       $scope.undoArchive = function(item){
-        $scope.undoArch = !$scope.undoArch;
         updateView(item, vm.archivedWiseups, vm.currentWiseups);
         toggleItem(item, 'is_archived');
       }
