@@ -10,7 +10,7 @@ app.service('apiService', ['$location', function($location){
   };
 }]);
 
-app.service('addCityService', ['$http', 'apiService', function($http, apiService){
+app.service('loginService', ['$http', 'apiService', function($http, apiService){
   var sv = this;
   sv.signin = function(cityLogin){
     console.log('cityLogin', cityLogin);
@@ -65,6 +65,7 @@ app.service('getMapService', ['getCityData', function(getCityData){
   sv.markerList = [];
   var points = [];
   var map;
+  var smMap;
   var items;
   var lat = '';
   var long = '';
@@ -85,6 +86,21 @@ app.service('getMapService', ['getCityData', function(getCityData){
     })
   }
 
+  sv.getWiseUpMap = function(item){
+    console.log('item:', item);
+    makeSmMap(Number(item.lat), Number(item.long))
+    // makeMarker(item.category, item.issue, item.image, item.lat, item.long)
+  }
+
+  var makeSmMap = function(lat, long){
+      smMap = new google.maps.Map(document.getElementById('smMap'), {
+      zoom: 15,
+      center: new google.maps.LatLng(lat, long),
+      draggable: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+  }
+
   var makeMap = function(lat, long){
     map = new google.maps.Map(document.getElementById('map'), {
      zoom: 12,
@@ -92,12 +108,12 @@ app.service('getMapService', ['getCityData', function(getCityData){
      draggable: true,
      mapTypeId: google.maps.MapTypeId.ROADMAP
    });
-
-   map.addListener('click', function(e){
-     var iw = document.querySelector('.gm-style-iw')
-     iw.close();
-
-   })
+   //
+  //  map.addListener('click', function(e){
+  //    var iw = document.querySelector('.gm-style-iw')
+  //    iw.close();
+   //
+  //  })
 
   }
 

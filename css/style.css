@@ -266,6 +266,11 @@ a>h4.yellow-highlight:hover{
   height: 75vh;
 }
 
+#smMap {
+  height: 200px;
+  width: 200px;
+}
+
 .iw-container {
    width: 200px;
    height: 100%;
