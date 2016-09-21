@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit']);
+var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit', 'chart.js']);
 
 // this is to block off routes from unauthorized users
 app.run(function($rootScope, $location, $window){
@@ -32,37 +32,38 @@ app.config(function($routeProvider){
   $routeProvider
   .when('/signin', {
     templateUrl: './views/signin.html',
-    controller: 'LoginController as LC',
+    controller: 'LoginController as LC'
   })
   .when('/signup', {
     templateUrl: './views/signup.html',
+    controller: 'LoginController as LC'
   })
   .when('/about', {
-    templateUrl: './views/about.html',
+    templateUrl: './views/about.html'
   })
   .when('/dashboard', {
     templateUrl: './views/dashboard.html',
-    controller: 'DashboardController as DC',
+    controller: 'DashboardController as DC'
   })
   .when('/card', {
     templateUrl: './views/card.html',
-    controller: 'DashboardController as DC',
+    controller: 'DashboardController as DC'
   })
-  .when('/map', {
-    templateUrl: './views/map.html',
-    controller: 'DashboardController as DC',
+  .when('/analytics', {
+    templateUrl: './views/analytics.html',
+    controller: 'DashboardController as DC'
   })
   .when('/fixed', {
     templateUrl: './views/fixed.html',
-    controller: 'DashboardController as DC',
+    controller: 'DashboardController as DC'
   })
   .when('/archived', {
     templateUrl: './views/archived.html',
-    controller: 'DashboardController as DC',
-  })
+    controller: 'DashboardController as DC'
+    })
   .otherwise({
     templateUrl: './views/landing.html',
-    controller: 'LoginController as LC'
+    controller: 'LoginController as LC',
   });
 });
 

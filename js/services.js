@@ -19,7 +19,7 @@ app.service('loginService', ['$http', 'apiService', function($http, apiService){
 
 }]);
 
-app.service('getCityData', ['$http', 'apiService', function($http, apiService){
+app.service('getCityData', ['$http', 'apiService', 'cityAnalyticsService', function($http, apiService, cityAnalyticsService){
   var sv = this;
   sv.wiseups = {
     current: [],
@@ -27,30 +27,77 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
     archived: []
   };
 
-  $http.get(apiService.getApiUrl() + 'api/city-wise')
-    .then(function(data){
-      var temp = data.data;
-      console.log('temp', data);
-      for (var i = 0; i < temp.length; i++){
-        if (temp[i].is_fixed === false && temp[i].is_archived === false){
-          console.log('current');
-          sv.wiseups.current.push(temp[i])
-        }
-        else if (temp[i].is_fixed == true){
-          console.log('fixed true');
-          sv.wiseups.fixed.push(temp[i])
-        }
-        else if (temp[i].is_archived === true){
-          sv.wiseups.archived.push(temp[i])
-        }
-        else if (i === temp.length){
-          drawMap(sv.wiseups.current)
-        }
+  sv.categoryCounter = {
+    data: []
+  };
+
+  sv.categoryOptions = {
+      scales: {
+        yAxes: [{
+          ticks:	{
+            beginAtZero: true
+          }
+        }]
       }
-    })
-    .catch(function(err){
-      console.log(err);
-    });
+    }
+
+  sv.categoryColors = ['#ffcc00', '#0077cc', '#555555', '#504222']
+
+  sv.statusData = {
+    data: []
+  }
+
+  var clearObj = function(obj){
+    for(var key in obj){
+      if (obj[key].constructor === Array){
+        obj[key].length = 0;
+      }
+    }
+  }
+
+
+  sv.getAllTheData = function(){
+    sv.statusData.data.length = 0;
+    sv.categoryCounter.data.length = 0;
+    console.log('sv.wiseups', sv.wiseups);
+    $http.get(apiService.getApiUrl() + 'api/city-wise')
+      .then(function(data){
+        clearObj(sv.wiseups);
+        clearObj(sv.statusData);
+        clearObj(sv.categoryCounter);
+        var temp = data.data;
+        console.log('temp', data.data);
+        var count = 0;
+        for (var i = 0; i < temp.length; i++){
+          if (!temp[i].is_fixed && !temp[i].is_archived){
+            sv.wiseups.current.push(temp[i])
+            count++;
+          }
+          else if (temp[i].is_fixed == true){
+            sv.wiseups.fixed.push(temp[i])
+          }
+          else if (temp[i].is_archived === true){
+            sv.wiseups.archived.push(temp[i])
+          }
+        }
+        return Promise.resolve();
+      })
+      .then(function(){
+        console.log('second then');
+        sv.categoryCounter.data = cityAnalyticsService.makeCategoryData(sv.wiseups.current);
+        console.log('categoryCounter', sv.categoryCounter.data);
+        sv.drawMap(sv.wiseups.current)
+        return Promise.resolve();
+      })
+      .then(function(){
+        console.log('third then');
+        sv.statusData.data = [sv.wiseups.current.length, sv.wiseups.fixed.length, sv.wiseups.archived.length]
+        console.log('status data', sv.statusData.data);
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+    }
 
     sv.markerList = [];
     var points = [];
@@ -59,13 +106,12 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
     var lat = '';
     var long = '';
 
-    var drawMap = function(items){
+    sv.drawMap = function(items){
       makeMap(items[0].lat, items[0].long)
       for (var i = 0; i < items.length; i++){
         makeMarker(items[i].category, items[i].issue, items[i].photo_url, items[i].lat, items[i].long, items[i].id, map)
           }
         }
-
 
     sv.getWiseUpMap = function(item){
       console.log('item:', item);
@@ -111,7 +157,7 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
 
       var marker = new google.maps.Marker({
         map: mapName,
-        draggable: true,
+        draggable: false,
         animation: google.maps.Animation.drop,
         position: {lat: Number(lat), lng: Number(long)},
         item_id: id
@@ -124,6 +170,37 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
 
     }
 
+}])
+
+app.service('cityAnalyticsService', [function(){
+  var sv = this;
+
+  sv.makeCategoryData = function(arr){
+    var utilities = 0;
+    var parks = 0;
+    var transit = 0;
+    var roads = 0;
+    for (var i = 0; i < arr.length; i++){
+      if (arr[i].category === 'utilities'){
+        utilities++;
+      } else if (arr[i].category === 'parks'){
+        parks++;
+     } else if (arr[i].category === 'transit'){
+       transit++;
+     } else if (arr[i].category === 'roads'){
+       roads++;
+     }
+    }
+    return [utilities, parks, transit, roads]
+  }
+
+  sv.pushCategories = function(arr, obj){
+    console.log('array', arr);
+    for (var i = 0; i < arr.length; i++){
+
+    }
+    console.log('push categories obj', obj);
+  }
 
 
 }])

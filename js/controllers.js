@@ -1,6 +1,7 @@
 'use strict';
 
-app.controller('LoginController', ['$http', '$window', '$location', 'loginService', function($http, $window, $location, ls){
+app.controller('LoginController', ['$http', '$window', '$location', 'loginService', '$scope', function($http, $window, $location, ls, $scope){
+  $scope.pageClass = 'fade'
   var vm = this;
   vm.place = null;
   vm.signinInfo = {};
@@ -33,7 +34,8 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
 
 }])
 
-app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', function($http, $window, ModalService, $uibModal, $q, getCityData, updateCityData, sortDataService, $location){
+app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', '$scope', 'cityAnalyticsService', function($http, $window, ModalService, $uibModal, $q, getCityData, updateCityData, sortDataService, $location, $scope, cityAnalyticsService){
+  $scope.pageClass = 'slide';
   var vm = this;
   vm.wiseups = getCityData.wiseups;
   vm.filtered = '';
@@ -42,6 +44,9 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
   vm.sortType = 'created_at';
   vm.sortReverse = false;
   vm.searchWiseups = '';
+
+  getCityData.getAllTheData();
+
   vm.showIssue = function(item){
     console.log('showIssue');
   }
@@ -49,6 +54,19 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
   vm.filterByCategory = function(filter){
     sortDataService.filterByCategory(filter, vm.wiseups.current)
   }
+
+  vm.categoryCounter = getCityData.categoryCounter;
+
+  vm.categoryLabels = ['Utilities', 'Parks', 'Transit', 'Roads'];
+
+  vm.categoryColors = getCityData.categoryColors;
+
+  vm.categoryOptions = getCityData.categoryOptions;
+
+  vm.statusData = getCityData.statusData;
+
+  vm.statusLabels = ['Current', 'Fixed', 'Archived']
+
 
   vm.showImageModal = function(item) {
     var modalInstance = $uibModal.open({
@@ -88,6 +106,14 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
             }
           });
         }
+
+}])
+
+app.controller('AnalyticsController', ['getCityData', function(getCityData){
+  var vm = this;
+  console.log('analytics controller');
+  getCityData.getAllTheData();
+
 }])
 
 app.controller('modalController', ['$uibModalInstance', 'updateCityData', 'getCityData', 'item', function($uibModalInstance, updateCityData, getCityData, item){
