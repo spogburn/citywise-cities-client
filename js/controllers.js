@@ -7,9 +7,9 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
   vm.error = {};
 
   vm.submit = function(){
+    console.log('in submit for login');
     ls.signin(vm.signinInfo)
     .then(function(data){
-        console.log('data', data);
       if (data.data.error){
         vm.error.message = 'You seem to have typed in the wrong email or password. Maybe you want to try again';
         vm.error.show = true;
@@ -38,7 +38,7 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
   vm.wiseups = getCityData.wiseups;
   vm.filtered = '';
   vm.username = $window.localStorage.username;
-
+  vm.currentDate = Date.now()
   vm.sortType = 'created_at';
   vm.sortReverse = false;
   vm.searchWiseups = '';
@@ -54,6 +54,7 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
     var modalInstance = $uibModal.open({
       templateUrl: "./templates/itemmodal.html",
       controller: 'modalController as ModC',
+      windowClass: 'wiseups-modal-window',
       resolve: {
         item: function () {
           return item;
@@ -61,77 +62,33 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
           }
         });
       }
+
+  vm.showFixedModal = function(item) {
+    var modalInstance = $uibModal.open({
+      templateUrl: "./templates/fixedmodal.html",
+      controller: 'modalController as ModC',
+      windowClass: 'wiseups-modal-window',
+      resolve: {
+        item: function () {
+          return item;
+            }
+          }
+        });
+      }
+
+    vm.showArchivedModal = function(item) {
+      var modalInstance = $uibModal.open({
+        templateUrl: "./templates/archivedmodal.html",
+        controller: 'modalController as ModC',
+        windowClass: 'wiseups-modal-window',
+        resolve: {
+          item: function () {
+            return item;
+              }
+            }
+          });
+        }
 }])
-
-//  var myModal = ModalService.showModal({
-//    templateUrl: "./templates/imagemodal.html",
-//    controller: function($scope, close) {
- //
- //
-//   // $window.on('shown', function(){
-//   //   getMapService.getWiseUpMap(item)
-//   // });
-//   //
- //
-    //
-    // $scope.fixWiseUp = function(){
-    //   updateCityData.update(item)
-    //   .then(function(data){
-    //     console.log(data);
-    //   })
-    //   .catch(function(err){
-    //     console.log('error', err);
-    //   })
-    // }
-    //
-    // $scope.archiveWiseUp = function(){
-    //   updateCityData.archive(item)
-    //   .then(function(data){
-    //     console.log(data);
-    //   })
-    //   .catch(function(err){
-    //     console.log('error', err);
-    //   })
-    // }
-    //
-    // $scope.updateFixed = function(item){
-    //   updateView(item, vm.currentWiseups, vm.fixedWiseups);
-    //   toggleItem(item, 'is_fixed');
-    // }
-    //
-    // $scope.updateArchive = function(item){
-    //   updateView(item, vm.currentWiseups, vm.archivedWiseups)
-    //   toggleItem(item, 'is_archived')
-    // }
-    //
-    // $scope.undoFixed = function(item){
-    //   updateView(item, vm.fixedWiseups, vm.currentWiseups);
-    //   toggleItem(item, 'is_fixed');
-    // }
-    //
-    // $scope.undoArchive = function(item){
-    //   updateView(item, vm.archivedWiseups, vm.currentWiseups);
-    //   toggleItem(item, 'is_archived');
-    // }
- //
-//     $scope.item = item;
-//     $scope.dismissModal = function() {
-//        close(200); // close, but give 200ms for bootstrap to animate
-//       };
-//     }
-//   })
-//   .then(function(modal) {
-//   console.log('item in then', item);
-//    // The modal object has the element built, if this is a bootstrap modal
-//    // you can call 'modal' to show it, if it's a custom modal just show or hide
-//    // it as you need to.
-//    modal.element.modal();
-//    getMapService.getWiseUpMap(item)
- //
-//    modal.close.then(function(){
-//     });
-//  });
-
 
 app.controller('modalController', ['$uibModalInstance', 'updateCityData', 'getCityData', 'item', function($uibModalInstance, updateCityData, getCityData, item){
   var vm = this;
@@ -202,9 +159,3 @@ app.controller('modalController', ['$uibModalInstance', 'updateCityData', 'getCi
     }
 
 }]);
-//
-// app.controller('MapController', ['getMapService', function(getMapService){
-//   var vm = this;
-//
-//
-// }])

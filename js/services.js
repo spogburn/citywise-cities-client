@@ -26,7 +26,7 @@ app.service('getCityData', ['$http', 'apiService', function($http, apiService){
     fixed: [],
     archived: []
   };
-  
+
   $http.get(apiService.getApiUrl() + 'api/city-wise')
     .then(function(data){
       var temp = data.data;

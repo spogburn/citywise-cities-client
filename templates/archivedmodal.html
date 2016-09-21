@@ -25,12 +25,12 @@
     </div>
 
     <div class="row item-details">
-    <div class="col-md-6 col-sm-6 col-xs-6"><h4 ng-class="{'strikethrough':ModC.item.is_fixed}">Date Submitted: {{ModC.item.created_at | amDateFormat:'MM/DD/YYYY' }}</h4>
-    </div>
-      <div class="col-md-6 col-sm-6 col-xs-6">
-        <span class="h4">Move WiseUp from fixed back to current?</span>
-        <button class="btn btn-sm btn-warning" ng-hide="ModC.item.is_fixed" ng-click="ModC.fixWiseUp(item); ModC.updateFixed(item);">Undo</button>
-        <button class="btn btn-sm btn-default" ng-show="ModC.item.is_fixed" ng-click="ModC.fixWiseUp(item); ModC.undoFixed(item) ">Yes</button>
+      <div class="col-md-6 col-sm-6 col-xs-6"><h4 ng-class="{'strikethrough':ModC.item.is_fixed}">Date Submitted: {{ModC.item.created_at | amDateFormat:'MM/DD/YYYY' }}</h4>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <span class="h4">Move WiseUp from archived to current?</span>
+        <button class="btn btn-sm btn-warning" ng-hide="ModC.item.is_archived" ng-click="ModC.archiveWiseUp(item); ModC.updateArchive(item)">Undo</button>
+        <button class="btn btn-sm btn-default" ng-click="ModC.archiveWiseUp(item); ModC.undoArchive(item)" ng-show="ModC.item.is_archived">Yes</button>
       </div>
     </div>
     <div class="row item-details">

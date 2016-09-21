@@ -1,13 +1,12 @@
 <nav-display></nav-display>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 greeting"><h4>You have <span class="yellow-highlight">{{DC.fixedWiseups.length}}</span> fixed WiseUps as of <span class="yellow-highlight">{{DC.currentDate | amDateFormat:'dddd, MMMM Do YYYY' }}</span></h4> </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 greeting"><h4>You have <span class="yellow-highlight">{{DC.wiseups.fixed.length}}</span> fixed WiseUps as of <span class="yellow-highlight">{{DC.currentDate | amDateFormat:'dddd, MMMM Do YYYY' }}</span></h4> </div>
     </div>
     <div class="row">
       <div class="col-md-4 col-sm-4 col-xs-4 views-container">
       <span class="h4"><a class="views" href="#/dashboard">List view</a> |</span>
-      <span class="h4"><a class="views" href="#/card">Card view</a> |</span>
-      <span class="h4"><a class="views" href="#/map">Map View</a></span>
+      <span class="h4"><a class="views" href="#/card">Card view</a> </span>
       </div>
       <div class="col-md-3 col-md-offset-5 col-sm-3 col-sm-offset-5 col-xs-3  col-xs-offset-5 views-container">
       <span class="h4"><a class="views" href="#/fixed">View Fixed</a> |</span>

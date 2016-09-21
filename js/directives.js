@@ -44,20 +44,25 @@ app.directive('archivedList', function(){
 })
 app.directive('routeLoadingIndicator', function($rootScope) {
   return {
-    restrict: 'E',
-    template: "<h1 ng-show='isRouteLoading'>Loading...</h1>",
-    replace: true,
-    link: function(scope, elem, attrs) {
+  restrict: 'E',
+  template: "<div ng-show='isRouteLoading' class='loading-indicator'>" +
+  "<div class='loading-indicator-body'>" +
+  "<h3 class='loading-title'>Loading...</h3>" +
+  "<div class='spinner'><chasing-dots-spinner></chasing-dots-spinner></div>" +
+  "</div>" +
+  "</div>",
+  replace: true,
+  link: function(scope, elem, attrs) {
+    scope.isRouteLoading = false;
+
+    $rootScope.$on('$routeChangeStart', function() {
+      console.log('route loading');
+      scope.isRouteLoading = true;
+    });
+    $rootScope.$on('$routeChangeSuccess', function() {
+      console.log('route loaded');
       scope.isRouteLoading = false;
-      console.log(scope.isRouteLoading);
-      $rootScope.$on('$routeChangeStart', function() {
-        scope.isRouteLoading = true;
-        console.log(scope.isRouteLoading);
-      });
-      $rootScope.$on('$routeChangeSuccess', function() {
-        scope.isRouteLoading = false;
-        console.log(scope.isRouteLoading);
-      });
-    }
-  };
+    });
+  }
+};
 });

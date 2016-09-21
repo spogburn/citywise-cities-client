@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit']);
 
 // this is to block off routes from unauthorized users
 app.run(function($rootScope, $location, $window){
