@@ -33,34 +33,12 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
 
 }])
 
-app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', 'getMapService', '$location', function($http, $window, ModalService, $uibModal, $q, getCityData, updateCityData, sortDataService, getMapService, $location){
+app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', function($http, $window, ModalService, $uibModal, $q, getCityData, updateCityData, sortDataService, $location){
   var vm = this;
-  vm.currentWiseups = [];
-  vm.fixedWiseups = [];
-  vm.archivedWiseups = [];
+  vm.wiseups = getCityData.wiseups;
   vm.filtered = '';
   vm.username = $window.localStorage.username;
-  vm.currentDate = new Date()
-  vm.getCityData = getCityData.getData()
-    .then(function(data){
-      var temp = data.data;
-      for (var i = 0; i < temp.length; i++){
-        if (temp[i].is_fixed === false && temp[i].is_archived === false){
-          console.log('current');
-          vm.currentWiseups.push(temp[i])
-        }
-        else if (temp[i].is_fixed == true){
-          console.log('fixed true');
-          vm.fixedWiseups.push(temp[i])
-        }
-        else if (temp[i].is_archived === true){
-          vm.archivedWiseups.push(temp[i])
-        }
-      }
-    })
-    .catch(function(err){
-      console.log(err);
-    })
+
   vm.sortType = 'created_at';
   vm.sortReverse = false;
   vm.searchWiseups = '';
@@ -69,12 +47,12 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
   }
 
   vm.filterByCategory = function(filter){
-    sortDataService.filterByCategory(filter, vm.currentWiseups)
+    sortDataService.filterByCategory(filter, vm.wiseups.current)
   }
 
   vm.showImageModal = function(item) {
     var modalInstance = $uibModal.open({
-      templateUrl: "./templates/imagemodal.html",
+      templateUrl: "./templates/itemmodal.html",
       controller: 'modalController as ModC',
       resolve: {
         item: function () {
@@ -95,46 +73,46 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
 //   // });
 //   //
  //
- //
-//     $scope.fixWiseUp = function(){
-//       updateCityData.update(item)
-//       .then(function(data){
-//         console.log(data);
-//       })
-//       .catch(function(err){
-//         console.log('error', err);
-//       })
-//     }
- //
-//     $scope.archiveWiseUp = function(){
-//       updateCityData.archive(item)
-//       .then(function(data){
-//         console.log(data);
-//       })
-//       .catch(function(err){
-//         console.log('error', err);
-//       })
-//     }
- //
-//     $scope.updateFixed = function(item){
-//       updateView(item, vm.currentWiseups, vm.fixedWiseups);
-//       toggleItem(item, 'is_fixed');
-//     }
- //
-//     $scope.updateArchive = function(item){
-//       updateView(item, vm.currentWiseups, vm.archivedWiseups)
-//       toggleItem(item, 'is_archived')
-//     }
- //
-//     $scope.undoFixed = function(item){
-//       updateView(item, vm.fixedWiseups, vm.currentWiseups);
-//       toggleItem(item, 'is_fixed');
-//     }
- //
-//     $scope.undoArchive = function(item){
-//       updateView(item, vm.archivedWiseups, vm.currentWiseups);
-//       toggleItem(item, 'is_archived');
-//     }
+    //
+    // $scope.fixWiseUp = function(){
+    //   updateCityData.update(item)
+    //   .then(function(data){
+    //     console.log(data);
+    //   })
+    //   .catch(function(err){
+    //     console.log('error', err);
+    //   })
+    // }
+    //
+    // $scope.archiveWiseUp = function(){
+    //   updateCityData.archive(item)
+    //   .then(function(data){
+    //     console.log(data);
+    //   })
+    //   .catch(function(err){
+    //     console.log('error', err);
+    //   })
+    // }
+    //
+    // $scope.updateFixed = function(item){
+    //   updateView(item, vm.currentWiseups, vm.fixedWiseups);
+    //   toggleItem(item, 'is_fixed');
+    // }
+    //
+    // $scope.updateArchive = function(item){
+    //   updateView(item, vm.currentWiseups, vm.archivedWiseups)
+    //   toggleItem(item, 'is_archived')
+    // }
+    //
+    // $scope.undoFixed = function(item){
+    //   updateView(item, vm.fixedWiseups, vm.currentWiseups);
+    //   toggleItem(item, 'is_fixed');
+    // }
+    //
+    // $scope.undoArchive = function(item){
+    //   updateView(item, vm.archivedWiseups, vm.currentWiseups);
+    //   toggleItem(item, 'is_archived');
+    // }
  //
 //     $scope.item = item;
 //     $scope.dismissModal = function() {
@@ -153,29 +131,80 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
 //    modal.close.then(function(){
 //     });
 //  });
-app.controller('modalController', ['$uibModalInstance', 'item', function($uibModalInstance, item){
+
+
+app.controller('modalController', ['$uibModalInstance', 'updateCityData', 'getCityData', 'item', function($uibModalInstance, updateCityData, getCityData, item){
   var vm = this;
-  vm.item = item;
-  console.log('item in modal', item);
+  vm.item = item
+
+  console.log('item in modal', vm.item);
+  console.log(item.photo_url);
+
+    vm.fixWiseUp = function(){
+      console.log('item in fix Wise Up', vm.item);
+      updateCityData.update(vm.item)
+      .then(function(data){
+        console.log(data);
+      })
+      .catch(function(err){
+        console.log('error', err);
+      })
+    }
+
+    vm.archiveWiseUp = function(){
+      updateCityData.archive(vm.item)
+      .then(function(data){
+        console.log(data);
+      })
+      .catch(function(err){
+        console.log('error', err);
+      })
+    }
+
+    vm.updateFixed = function(item){
+      updateView(vm.item, getCityData.wiseups.current, getCityData.wiseups.fixed);
+      toggleItem(vm.item, 'is_fixed');
+    }
+
+    vm.updateArchive = function(item){
+      updateView(vm.item, getCityData.wiseups.current, getCityData.wiseups.archived)
+      toggleItem(vm.item, 'is_archived')
+    }
+
+    vm.undoFixed = function(item){
+      updateView(vm.item, getCityData.wiseups.fixed, getCityData.wiseups.current);
+      toggleItem(vm.item, 'is_fixed');
+    }
+
+    vm.undoArchive = function(item){
+      updateView(vm.item, getCityData.wiseups.archived, getCityData.wiseups.current);
+      toggleItem(vm.item, 'is_archived');
+    }
+
+    var updateView = function(item, arrFrom, arrTo){
+      var itemToAdd = arrFrom.splice(arrFrom.indexOf(item),1)
+      arrTo.push(itemToAdd[0]);
+    }
+
+    var toggleItem = function(item, key){
+      item[key] = !item[key];
+
+    }
+
+  $uibModalInstance.rendered
+  .then(function(){
+    console.log('modal opened');
+    getCityData.getWiseUpMap(item)
+  })
+
   vm.close = function(){
     $uibModalInstance.close();
     }
 
 }]);
-
-app.controller('MapController', ['getMapService', function(getMapService){
-  var vm = this;
-  vm.getData = getMapService.getData();
-
-}])
-
-
-var updateView = function(item, arrFrom, arrTo){
-  var itemToAdd = arrFrom.splice(arrFrom.indexOf(item),1)
-  arrTo.push(itemToAdd[0]);
-}
-
-var toggleItem = function(item, key){
-  item[key] = !item[key];
-
-}
+//
+// app.controller('MapController', ['getMapService', function(getMapService){
+//   var vm = this;
+//
+//
+// }])

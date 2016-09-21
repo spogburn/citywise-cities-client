@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <div class="row">
+    <div class="col-md-10 col-sm-10 col-xs-10">
+      <h3 class="modal-title" id="modal-title">{{ModC.item.issue}}</h3>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2">
+      <button type="button" class="close" ng-click="ModC.close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+  </div>
+
+
+</div>
+<div class="modal-body" id="modal-body">
+  <div class="row">
+    <div class="col-md-6"><img ng-src="{{ModC.item.photo_url}}" class="modal-img" alt="issue image">
+    </div>
+    <div class="col-md-6">
+      <div id="smMap"></div>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12"><h4 ng-class="{'strikethrough':ModC.item.is_fixed}">Category: {{ModC.item.category}}</h4></div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12"><h4 ng-class="{'strikethrough':ModC.item.is_fixed}">Date Submitted: {{ModC.item.created_at | amDateFormat:'MM/DD/YYYY' }}</h4></div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12"><h4 ng-class="{'strikethrough':ModC.item.is_fixed}">Time Submitted: {{ModC.item.created_at | amDateFormat:'hh:mm a' }}</h4></div>
+    </div>
+</div>
+<div class="modal-footer">
+  <div class="row selection">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <span class="h4">Mark WiseUp as fixed?</span>
+      <button class="btn btn-sm btn-default" ng-hide="ModC.item.is_fixed" ng-click="ModC.fixWiseUp(item); ModC.updateFixed(item);">Yes</button>
+      <button class="btn btn-sm btn-warning" ng-show="ModC.item.is_fixed" ng-click="ModC.fixWiseUp(item); ModC.undoFixed(item) ">Undo</button>
+    </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+      <span class="h4">Archive WiseUp?</span>
+      <button class="btn btn-sm btn-default" ng-hide="ModC.item.is_archived" ng-click="ModC.archiveWiseUp(item); ModC.updateArchive(item)">Yes</button>
+
+      <button class="btn btn-sm btn-warning" ng-click="ModC.archiveWiseUp(item); ModC.undoArchive(item)" ng-show="ModC.item.is_archived">Undo</button>
+    </div>
+  </div>
+    <!-- <button class="btn btn-primary" type="button" ng-click="ModC.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="ModC.close()">Cancel</button> -->
+</div>

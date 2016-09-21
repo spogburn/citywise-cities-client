@@ -50,7 +50,7 @@ app.config(function($routeProvider){
   })
   .when('/map', {
     templateUrl: './views/map.html',
-    controller: 'MapController as MC',
+    controller: 'DashboardController as DC',
   })
   .when('/fixed', {
     templateUrl: './views/fixed.html',
