@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment',  'angularModalService', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit', 'chart.js']);
+var app = angular.module('CityWiseAdmin', ['ngRoute', 'angularMoment', 'ngAnimate', 'ui.bootstrap', 'angular-spinkit', 'chart.js']);
 
 // this is to block off routes from unauthorized users
 app.run(function($rootScope, $location, $window){
@@ -16,7 +16,15 @@ app.run(function($rootScope, $location, $window){
     }
     return true;
   }
+app.run(function($rootScope, $location){
 
+  var selectedRoute = false;
+
+  if ($location.path(route).$$url){
+    selectedRoute = true;
+  }
+  
+})
   $rootScope.$on('$routeChangeStart', function(event, next, current){
      // if it is a closed route and they don't have a token
     if(isClosed($location.path()) && !$window.localStorage.token){

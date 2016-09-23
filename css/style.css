@@ -33,6 +33,17 @@ body {
   text-align: center;
 }
 
+h2.login-text.about-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  line-height: 200%;
+}
+
+p.about-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1.4em;
+  line-height: 200%;
+}
+
 .login-inverse {
   size: 1.2em;
   margin-top: 1%;
@@ -52,6 +63,7 @@ body {
   color: rgb(228, 209, 157);
   text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
 }
+
 .btn-yellow {
   margin-top: 3%;
   background-color:  #ffc900;
@@ -81,11 +93,25 @@ a:focus{
     height: 80%;
   }
 
+.about-page-nav>nav.navbar {
+  margin-bottom: 0;
+}
+
+a.about-link {
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
+}
+
+a.about-link:hover {
+  color:rgb(219, 219, 219);
+}
+
 .navbar {
   position: relative;
   background-color: #ffc900;
   border: none;
 }
+
 
 /*nav {
   margin:0;
@@ -249,6 +275,9 @@ a>h4.yellow-highlight:hover{
 
 }
 
+chasing-dots-spinner {
+  color: white;
+}
 div.spinner>chasing-dots-spinner{
   color: white;
 }
@@ -264,9 +293,6 @@ div.spinner>chasing-dots-spinner{
   color: rgb(180, 141, 5);
 }
 
-.modal-footer {
-  text-align: center;
-}
 
 .selection{
   margin-top: 5%;
@@ -275,19 +301,15 @@ div.spinner>chasing-dots-spinner{
   font-size: 2.8em;
 }
 
-.modal {
-  height:90%;
-
+.modal-backdrop {
+opacity: .5 !important;
 }
+
 .modal-img {
   max-width: 350px;
   /*margin-left: 10%;*/
 }
 
-.wiseups-modal-window .modal-dialog{
-  width: 75%;
-  height: 60%;
-}
 
 #map {
   height: 75vh;

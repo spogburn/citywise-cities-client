@@ -55,7 +55,6 @@ app.service('getCityData', ['$http', 'apiService', 'cityAnalyticsService', funct
     }
   }
 
-
   sv.getAllTheData = function(){
     sv.statusData.data.length = 0;
     sv.categoryCounter.data.length = 0;
@@ -109,14 +108,15 @@ app.service('getCityData', ['$http', 'apiService', 'cityAnalyticsService', funct
     sv.drawMap = function(items){
       makeMap(items[0].lat, items[0].long)
       for (var i = 0; i < items.length; i++){
-        makeMarker(items[i].category, items[i].issue, items[i].photo_url, items[i].lat, items[i].long, items[i].id, map)
+        makeMarker(items[i], map)
+        sv.markerList.push(makeMarker)
           }
         }
 
     sv.getWiseUpMap = function(item){
       console.log('item:', item);
       makeSmMap(Number(item.lat), Number(item.long))
-      makeMarker(item.category, item.issue, item.photoUrl, item.lat, item.long, item.id, smMap)
+      makeMarker(item, smMap)
       // makeMarker(item.category, item.issue, item.image, item.lat, item.long)
     }
 
@@ -145,10 +145,10 @@ app.service('getCityData', ['$http', 'apiService', 'cityAnalyticsService', funct
 
     }
 
-    var makeMarker = function(category, issue, image, lat, long, id, mapName){
+    var makeMarker = function(item, mapName){
 
-      var contentStr = '<div class="iw-container">' + '<div class="iw-title">' + category + '</div><div class="iw-content"><img src="' + image + '" height="75" width="75" class="iw-image">' +
-                        '<p>'+ issue + '</p></div></div>';
+      var contentStr = '<div class="iw-container">' + '<div class="iw-title">' + item.category + '</div><div class="iw-content"><img src="' + item.photo_url + '" height="75" width="75" class="iw-image">' +
+                        '<p>'+ item.issue + '</p></div></div>';
 
       var infoWindow = new google.maps.InfoWindow({
         content: contentStr,
@@ -159,8 +159,8 @@ app.service('getCityData', ['$http', 'apiService', 'cityAnalyticsService', funct
         map: mapName,
         draggable: false,
         animation: google.maps.Animation.drop,
-        position: {lat: Number(lat), lng: Number(long)},
-        item_id: id
+        position: {lat: Number(item.lat), lng: Number(item.long)},
+        item_id: item.id
       })
 
       marker.addListener('click', function(){

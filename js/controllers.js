@@ -1,14 +1,13 @@
 'use strict';
 
 app.controller('LoginController', ['$http', '$window', '$location', 'loginService', '$scope', function($http, $window, $location, ls, $scope){
-  $scope.pageClass = 'fade'
+  console.log('routeloading', $scope.isRouteLoading);
   var vm = this;
   vm.place = null;
   vm.signinInfo = {};
   vm.error = {};
 
   vm.submit = function(){
-    console.log('in submit for login');
     ls.signin(vm.signinInfo)
     .then(function(data){
       if (data.data.error){
@@ -34,7 +33,7 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
 
 }])
 
-app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', '$scope', 'cityAnalyticsService', function($http, $window, ModalService, $uibModal, $q, getCityData, updateCityData, sortDataService, $location, $scope, cityAnalyticsService){
+app.controller('DashboardController', ['$http', '$window', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', '$scope', 'cityAnalyticsService', '$timeout', function($http, $window, $uibModal, $q, getCityData, updateCityData, sortDataService, $location, $scope, cityAnalyticsService, $timeout){
   $scope.pageClass = 'slide';
   var vm = this;
   vm.wiseups = getCityData.wiseups;
@@ -45,7 +44,8 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
   vm.sortReverse = false;
   vm.searchWiseups = '';
 
-  getCityData.getAllTheData();
+   getCityData.getAllTheData()
+
 
   vm.showIssue = function(item){
     console.log('showIssue');
@@ -72,7 +72,8 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
     var modalInstance = $uibModal.open({
       templateUrl: "./templates/itemmodal.html",
       controller: 'modalController as ModC',
-      windowClass: 'wiseups-modal-window',
+      size: 'lg',
+      animation: false,
       resolve: {
         item: function () {
           return item;
@@ -85,7 +86,8 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
     var modalInstance = $uibModal.open({
       templateUrl: "./templates/fixedmodal.html",
       controller: 'modalController as ModC',
-      windowClass: 'wiseups-modal-window',
+      size: 'lg',
+      animation: false,
       resolve: {
         item: function () {
           return item;
@@ -98,7 +100,8 @@ app.controller('DashboardController', ['$http', '$window', 'ModalService', '$uib
       var modalInstance = $uibModal.open({
         templateUrl: "./templates/archivedmodal.html",
         controller: 'modalController as ModC',
-        windowClass: 'wiseups-modal-window',
+        size: 'lg',
+        animation: false,
         resolve: {
           item: function () {
             return item;

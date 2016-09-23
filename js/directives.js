@@ -42,6 +42,7 @@ app.directive('archivedList', function(){
     templateUrl: '../templates/archivedlist.html'
   }
 })
+
 app.directive('routeLoadingIndicator', function($rootScope) {
   return {
   restrict: 'E',
@@ -59,6 +60,7 @@ app.directive('routeLoadingIndicator', function($rootScope) {
       console.log('route loading');
       scope.isRouteLoading = true;
     });
+    
     $rootScope.$on('$routeChangeSuccess', function() {
       console.log('route loaded');
       scope.isRouteLoading = false;
