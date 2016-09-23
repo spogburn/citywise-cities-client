@@ -16,15 +16,7 @@ app.run(function($rootScope, $location, $window){
     }
     return true;
   }
-app.run(function($rootScope, $location){
 
-  var selectedRoute = false;
-
-  if ($location.path(route).$$url){
-    selectedRoute = true;
-  }
-  
-})
   $rootScope.$on('$routeChangeStart', function(event, next, current){
      // if it is a closed route and they don't have a token
     if(isClosed($location.path()) && !$window.localStorage.token){
