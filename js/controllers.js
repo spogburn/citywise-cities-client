@@ -1,8 +1,9 @@
 'use strict';
 
-app.controller('LoginController', ['$http', '$window', '$location', 'loginService', '$scope', function($http, $window, $location, ls, $scope){
-  console.log('routeloading', $scope.isRouteLoading);
+app.controller('LoginController', ['$http', '$window', '$location', 'loginService', '$scope', '$rootScope', function($http, $window, $location, ls, $scope, $rootScope){
+  console.log('location', $location.path());
   var vm = this;
+
   vm.place = null;
   vm.signinInfo = {};
   vm.error = {};

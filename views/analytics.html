@@ -15,25 +15,28 @@
     <span class="h4"><a href="#/analytics" class="views">View Analytics</a></span>
     </div>
   </div>
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12 map-container">
-        <div id="map">
-
+    <div class="row" style="margin-top:3%;">
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h4>Wiseups By Category</h4>
+          <canvas id="bar" class="chart chart-bar"
+          chart-data="DC.categoryCounter.data" chart-labels="DC.categoryLabels" chart-colors="DC.categoryColors" chart-options="DC.categoryOptions">
+          </canvas>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h4>Wiseups By Status</h4>
+          <canvas id="bar2" class="chart chart-bar"
+          chart-data="DC.statusData.data" chart-labels="DC.statusLabels" chart-colors="DC.categoryColors" chart-options="DC.categoryOptions">
+          </canvas>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row" style="margin-bottom:10%;">
     <div class="col-md-6 col-sm-6 col-xs-6 map-container">
-      <h4>Wiseups By Category</h4>
-      <canvas id="bar" class="chart chart-bar"
-      chart-data="DC.categoryCounter.data" chart-labels="DC.categoryLabels" chart-colors="DC.categoryColors" chart-options="DC.categoryOptions">
-      </canvas>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-6 map-container">
-      <h4>Wiseups By Status</h4>
-      <canvas id="bar2" class="chart chart-bar"
-      chart-data="DC.statusData.data" chart-labels="DC.statusLabels" chart-colors="DC.categoryColors" chart-options="DC.categoryOptions">
-      </canvas>
-    </div>
+      <div id="map">
+
+      </div>
   </div>
 </div>
