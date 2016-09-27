@@ -11,6 +11,7 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
   vm.submit = function(){
     ls.signin(vm.signinInfo)
     .then(function(data){
+      console.log(data.data.error);
       if (data.data.error){
         vm.error.message = 'You seem to have typed in the wrong email or password. Maybe you want to try again';
         vm.error.show = true;
@@ -23,7 +24,8 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
       }
     })
     .catch(function(err){
-      console.log(err);
+      vm.error.message = err.data.error
+      vm.error.show = true;
     });
   };
 

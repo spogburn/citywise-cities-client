@@ -17,12 +17,58 @@ body {
     background: url("../images/city_shoes-resized.jpg") no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
-        background-size: cover;
-    background-color: rgb(153, 122, 8);
-    background-blend-mode: multiply;
     background-size: cover;
+    background-color: rgb(194, 159, 31);
+    background-blend-mode: multiply;
 }
 
+.error-message{
+  padding: 1em;
+  background-color: rgba(254, 254, 254, 0.6);
+  color: rgb(224, 61, 16);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
+
+}
+.fill-background {
+  min-height: 100vh;
+}
+
+.test {
+  margin-top: 10%;
+}
+
+.test-app {
+  padding: 5%;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+#loading-bar .bar {
+  background: #eee;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  #eee;
+  border-left-color: #eee;
+}
+#loading-bar .peg {
+  -moz-box-shadow: #eee 1px 0 6px 1px;
+  -ms-box-shadow: #eee 1px 0 6px 1px;
+  -webkit-box-shadow: #eee 1px 0 6px 1px;
+  box-shadow: #eee 1px 0 6px 1px;
+}
+
+.loading-spinner {
+  -webkit-animation:spin 1s linear infinite;
+  -moz-animation:spin 1s linear infinite;
+  animation:spin 1s linear infinite;
+}
+
+.analytics {
+  margin: 3%;
+}
+
+.about-text {
+  margin-top:3%
+}
 .city-wise-logo-welcome {
   width: 100%;
 }
@@ -53,10 +99,15 @@ p.about-text {
   text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
 }
 
+ul li {
+  text-decoration: none;
+  list-style-type: none;
+}
 .login-text-list{
   font-size: 1.5em;
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
+
 }
 
 .signup-form {
@@ -116,21 +167,6 @@ a.about-link:hover {
 }
 
 
-/*nav {
-  margin:0;
-  padding: 0;
-  height: 100%;
-}*/
-
-/*.navbar-nav {
-  margin:0;
-  height: 100%;
-}*/
-
-/*.navbar-nav>li {
-  margin:0;
-}*/
-
 .nav>li>a {
   padding-right: 20px;
 }
@@ -144,16 +180,13 @@ a.about-link:hover {
   font-size: 1.2em;
 }
 
-/*.navbar-nav > li > a:hover{
-  background-color: #eebc02;
-  margin:0;
-}*/
 
 .navbar-brand {
     position: absolute;
     left: 0;
     top: 0;
     text-align: center;
+    margin-top: .2em;
     margin-left: 45%;
     padding:0;
 }
@@ -296,7 +329,9 @@ div.spinner>chasing-dots-spinner{
   color: rgb(180, 141, 5);
 }
 
-
+.category-column {
+  padding-top: 1%;
+}
 .selection{
   margin-top: 5%;
 }
@@ -422,4 +457,63 @@ animation for cards*/
 }
 .fade.ng-leave-active {
     opacity: 0;
+}
+
+
+@media only screen and (max-width: 1040px){
+  .views {
+    font-size: .8em;
+  }
+
+  .category {
+    font-size: .8em;
+  }
+}
+
+@media only screen and (max-width: 960px){
+  .views {
+    font-size: .6em;
+  }
+  .category {
+    font-size: .7em;
+  }
+}
+
+@media only screen and (max-width: 640px){
+  div.background {
+    min-height: 900px;
+    }
+
+  p.login-text{
+    font-size: 1.5em;
+  }
+  h2#simple {
+    font-size: 1.8em;
+  }
+  li.login-text-list{
+    font-size: 1em;
+    text-align: left;
+  }
+  h1.login-text {
+    font-size: 2em;
+  }
+  ul {
+    padding-left: 10%;
+  }
+
+  h2.login-inverse{
+    font-size: 1.3em;
+  }
+  div.button-mobile {
+    margin-bottom: 5%;
+  }
+}
+
+
+@media only screen and (max-width: 368px)
+{
+	.background
+	{
+		min-height: 500px;
+	}
 }

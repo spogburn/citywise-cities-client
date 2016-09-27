@@ -1,11 +1,15 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-8 col-sm-offset-8 col-xs-offset-8">
+    <div class="col-md-4 col-sm-5 col-xs-5 col-md-offset-4 col-sm-offset-3 col-xs-offset-3 text-right category-column">
+      <span><a class="yellow-highlight category" href="" ng-click="DC.filtered ='utilities'">Utilities</a> | <a class="yellow-highlight category" href="" ng-click="DC.filtered ='parks'">Parks</a> | <a class="yellow-highlight category" href="" ng-click="DC.filtered ='roads'">Roads</a>  | <a class="yellow-highlight category" href="" ng-click="DC.filtered ='transit'"> Public Transit </a> |
+              <a href="" class="yellow-highlight category" ng-click="DC.filtered =''" >All</a></span>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4">
       <form>
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
-            <input type="text" class="form-control" placeholder="Search Wiseups" ng-model="DC.searchWiseups">
+            <input type="text" class="form-control" placeholder="Search WiseUps" ng-model="DC.searchWiseups">
           </div>
         </div>
       </form>
