@@ -24,7 +24,7 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
       }
     })
     .catch(function(err){
-      vm.error.message = err.data.error
+      vm.error.message = err.data.error;
       vm.error.show = true;
     });
   };
@@ -32,23 +32,23 @@ app.controller('LoginController', ['$http', '$window', '$location', 'loginServic
   vm.logout = function(){
     $window.localStorage.clear();
     $location.path('/');
-  }
+  };
 
-}])
+}]);
 
 app.controller('DashboardController', ['$http', '$window', '$uibModal', '$q', 'getCityData', 'updateCityData', 'sortDataService', '$location', '$scope', 'cityAnalyticsService', '$timeout', function($http, $window, $uibModal, $q, getCityData, updateCityData, sortDataService, $location, $scope, cityAnalyticsService, $timeout){
+
   $scope.pageClass = 'slide';
   var vm = this;
   vm.wiseups = getCityData.wiseups;
   vm.filtered = '';
   vm.username = $window.localStorage.username;
-  vm.currentDate = Date.now()
+  vm.currentDate = Date.now();
   vm.sortType = 'created_at';
-  vm.sortReverse = false;
+  vm.sortReverse = true;
   vm.searchWiseups = '';
 
-   getCityData.getAllTheData()
-
+  getCityData.getAllTheData();
 
   vm.showIssue = function(item){
     console.log('showIssue');
@@ -68,8 +68,7 @@ app.controller('DashboardController', ['$http', '$window', '$uibModal', '$q', 'g
 
   vm.statusData = getCityData.statusData;
 
-  vm.statusLabels = ['Current', 'Fixed', 'Archived']
-
+  vm.statusLabels = ['Current', 'Fixed', 'Archived'];
 
   vm.showImageModal = function(item) {
     var modalInstance = $uibModal.open({

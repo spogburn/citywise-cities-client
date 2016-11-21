@@ -17,7 +17,7 @@
   </div>
 
     <div class="container">
-      <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.wiseups.current | filter:DC.searchWiseups | filter:DC.filtered" ng-click="DC.showImageModal(item)">
+      <div class="col-md-5 col-sm-5 col-xs-5 wiseup-card grow" ng-repeat="item in DC.wiseups.current | orderBy:DC.sortType:DC.sortReverse | filter:DC.searchWiseups | filter:DC.filtered" ng-click="DC.showImageModal(item)">
         <div class="row">
         <div class="col-md-7 col-sm-7 col-xs-7">
           <img class="item-img" ng-src="{{item.photo_url}}" alt="submitted image">
